@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TodoList</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_todo_create">TodoCreateActivity</string>
+    <string-array name="projectsArray">
+        <item>Семья</item>
+        <item>Работа</item>
+        <item>Прочее</item>
+    </string-array>
+</resources>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".TodoCreateActivity"
+    tools:showIn="@layout/activity_todo_create"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textSeparator"
+        fontPath="fonts/OpenSans-Semibold.ttf"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#eaeaea"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="ЗАДАЧА"
+        android:textAlignment="viewStart"
+        android:textAllCaps="true"
+        android:textColor="@color/systemBlackColor"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textinputborder"
+        android:ems="10"
+        android:hint="Название задачи"
+        android:inputType="text"
+        android:padding="15dp"
+        android:layout_margin="20dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="44dp" />
+
+    <TextView
+        android:id="@+id/textSeparator2"
+        fontPath="fonts/OpenSans-Semibold.ttf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#eaeaea"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="КАТЕГОРИЯ"
+        android:textAlignment="viewStart"
+        android:textAllCaps="true"
+        android:textColor="@color/systemBlackColor"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+    <ListView
+        android:choiceMode="singleChoice"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+</LinearLayout>

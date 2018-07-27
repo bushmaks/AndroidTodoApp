@@ -24,6 +24,7 @@ import com.koushikdutta.ion.Ion;
 import com.scalified.fab.ActionButton;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
@@ -72,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
         // Запрос категорий и задач с сервера
         mAdapter = new CustomAdapter(this);
         final List<Project> projects = new ArrayList<Project>();
+        final List<String> fArray = new ArrayList<String>();
+        try {
+            Bundle b=this.getIntent().getExtras();
+            String[] array = b.getStringArray("NewTodo");
+            fArray.addAll(Arrays.asList(array));
+        } catch (NullPointerException e) {
+        }
 
         Ion.with(this)
 
@@ -95,6 +103,13 @@ public class MainActivity extends AppCompatActivity {
                                 projectsList.add(project.title);
 
                                 for (Todos todo : project.todos) {
+                                    try {
+                                        if (!(todo.text == fArray.get(0))) {
+                                            mAdapter.addItem(fArray.get(0), false, Long.valueOf(fArray.get(1)));
+                                        }
+                                    } catch (Exception e1) {
+
+                                    }
                                     mAdapter.addItem(todo.text, todo.isCompleted, Long.valueOf(todo.id));
 
                                 }
@@ -172,10 +187,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         // Кнопка обновления контента
         if (id == R.id.action_settings) {
-            Intent intent = getIntent();
             finish();
             overridePendingTransition(0,0);
-            startActivity(intent);
+            startActivity(getIntent());
             return true;
         }
 

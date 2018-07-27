@@ -30,10 +30,12 @@ class CustomAdapter extends BaseAdapter {
     }
 
     public void addItem(final String item, final Boolean isCompleted, final Long id) {
-        mData.add(item);
-        mDataBool.add(isCompleted);
-        mDataId.add(id);
-        notifyDataSetChanged();
+        if (!mDataId.contains(id) && !mData.contains(item)) {
+            mData.add(item);
+            mDataBool.add(isCompleted);
+            mDataId.add(id);
+            notifyDataSetChanged();
+        }
     }
 
     public void addSectionHeaderItem(final String item) {

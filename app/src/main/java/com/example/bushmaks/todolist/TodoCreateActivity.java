@@ -32,7 +32,7 @@ public class TodoCreateActivity extends AppCompatActivity {
 
     private EditText todoText;
     private ListView projectsList;
-    private String projectID;
+    private String projectID = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,25 +114,21 @@ public class TodoCreateActivity extends AppCompatActivity {
                 params.add("todo", todo);
 
 
+                Intent i = new Intent(this, MainActivity.class);
+
 
                 Ion.with(this)
                         .load("http://warm-fjord-39817.herokuapp.com/api/v1/todos")
                         .setJsonObjectBody(params)
-                        .asJsonObject()
-                        .setCallback(new FutureCallback<JsonObject>() {
-                            @Override
-                            public void onCompleted(Exception e, JsonObject result) {
-                                // do stuff with the result or error
-                            }
-                        });
+                        .asJsonObject().setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        // Если ошибка или успешное выполнение
 
-                Bundle b=new Bundle();
-                b.putStringArray("createdTodo", new String[]{projectID, todoTextString});
-                Intent i=new Intent(this, MainActivity.class);
-                i.putExtras(b);
-                startActivity(intent);
+                    }
+                });
+                startActivity(i);
                 finish();
-                return true;
             } else {
                 Toast toast = Toast.makeText(getApplicationContext(),
                         "Вы не ввели текст задачи!", Toast.LENGTH_SHORT);
@@ -140,9 +136,14 @@ public class TodoCreateActivity extends AppCompatActivity {
                 return false;
             }
         }
-
-        startActivity(intent);
+        Bundle b=new Bundle();
+        b.putStringArray("NewTodo", new String[]{todoText.getText().toString(), projectID});
+        Intent i=new Intent(this, MainActivity.class);
+        i.putExtras(b);
+        startActivity(i);
         finish();
+
+
         return true;
     }
 
